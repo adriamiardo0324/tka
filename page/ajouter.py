@@ -116,6 +116,11 @@ def payement():
     frame_payement = tk.Frame(root, bg="lightpink", padx=10, pady=10)
     frame_payement.place(x=260, width=1100, height=780)
     
+ # Titre de la section Paiement
+    tk.Label(frame_payement, text="Paiement", bg="lightpink", fg="black", font=("Arial", 16)).pack(pady=20)
+
+   
+    
 # frame Utilisateur
 def utilisateur():
     frame_utilisateur = tk.Frame(root, bg="#2c8feb", padx=10, pady=10)
