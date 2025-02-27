@@ -116,8 +116,62 @@ def payement():
     frame_payement = tk.Frame(root, bg="lightpink", padx=10, pady=10)
     frame_payement.place(x=260, width=1100, height=780)
     
+# Fonction pour traiter le paiement
+def process_payment():
+    try:
+        # Récupérer les informations saisies
+        client_name = name_entry.get()
+        room_number = room_entry.get()
+        amount_due = float(amount_entry.get())
+        payment_method = payment_method_var.get()
+
+        # Vérifier si les informations sont complètes
+        if not client_name or not room_number or not amount_due:
+            messagebox.showerror("Erreur", "Veuillez remplir tous les champs.")
+            return
+
+        # Simuler le traitement du paiement
+        messagebox.showinfo("Paiement effectué", f"Le paiement de {amount_due}Ar pour {client_name} (chambre {room_number}) a été effectué via {payment_method}.")
+        
+        # Réinitialiser les champs après le paiement
+        name_entry.delete(0, tk.END)
+        room_entry.delete(0, tk.END)
+        amount_entry.delete(0, tk.END)
+        payment_method_var.set("Carte")
+
+    except ValueError:
+        messagebox.showerror("Erreur", "Veuillez entrer un montant valide.")
+
+# Créer la fenêtre principale
+root = tk.Tk()
+root.title("Gestion des Paiements de l'Hôtel")
+
+# Création des labels et champs de saisie
+tk.Label(root, text="Nom du client :").grid(row=0, column=0, padx=10, pady=5)
+name_entry = tk.Entry(root)
+name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+tk.Label(root, text="Numéro de chambre :").grid(row=1, column=0, padx=10, pady=5)
+room_entry = tk.Entry(root)
+room_entry.grid(row=1, column=1, padx=10, pady=5)
+
+tk.Label(root, text="Montant dû :").grid(row=2, column=0, padx=10, pady=5)
+amount_entry = tk.Entry(root)
+amount_entry.grid(row=2, column=1, padx=10, pady=5)
+
+tk.Label(root, text="Méthode de paiement :").grid(row=3, column=0, padx=10, pady=5)
+payment_method_var = tk.StringVar(value="Carte")
+payment_methods = ["Carte", "Espèces", "Virement"]
+payment_menu = tk.OptionMenu(root, payment_method_var, *payment_methods)
+payment_menu.grid(row=3, column=1, padx=10, pady=5)
+
+# Bouton pour traiter le paiement
+pay_button = tk.Button(root, text="Effectuer le paiement", command=process_payment)
+pay_button.grid(row=4, column=0, columnspan=2, pady=10)
+
+    
  # Titre de la section Paiement
-    tk.Label(frame_payement, text="Paiement", bg="lightpink", fg="black", font=("Arial", 16)).pack(pady=20)
+tk.Label(frame_payement, text="Paiement", bg="lightpink", fg="black", font=("Arial", 16)).pack(pady=20)
 
    
     
@@ -146,6 +200,28 @@ lab6=tk.Button(frame_ankavia, text="Utilisateurs", bg="#2c8feb",fg="white",relie
 lab7=tk.Button(frame_ankavia, text="Deconnexion", bg="#2c8feb",fg="white",relief="flat",font=("Arial",10)).place(x=10,y=350)
 
 # fenetre.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 root.mainloop()
