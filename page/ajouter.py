@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-from PIL import pillow
+from PIL import Image,ImageTk
 from tkinter import messagebox
 from datetime import datetime
 root = tk.Tk()
@@ -20,6 +20,34 @@ root.geometry("1500x800")
 def accueil():
     frame_Accueil = tk.Frame(root, bg="#131199", padx=0, pady=0)
     frame_Accueil.place(x=260, width=1100, height=700)
+    #Creation card1
+    tk_nb = tk.Frame(frame_Accueil,bg="#333")
+    tk_nb.place(x=40,y=50,width=200,height=90)
+    lab= tk.Label(tk_nb, text="Nombre de client",bg="#333",fg="#fff",font=("Arial",12))
+    lab.place(x=30,y=10)
+    nb = tk.Label(tk_nb,text="Nombre",bg="#333",fg="#FFF",font=("Arial",12))
+    nb.place(x=60,y=40)
+    #card 2 
+    tk_nb1 = tk.Frame(frame_Accueil,bg="#333")
+    tk_nb1.place(x=200,y=50,width=200,height=90)
+    lab1= tk.Label(tk_nb1, text="Nombre de client",bg="#333",fg="#fff",font=("Arial",12))
+    lab1.place(x=30,y=10)
+    nb1 = tk.Label(tk_nb1,text="Nombre",bg="#333",fg="#FFF",font=("Arial",12))
+    nb1.place(x=60,y=40)
+    #Card 3 
+    tk_nb2 = tk.Frame(frame_Accueil,bg="#333")
+    tk_nb2.place(x=400,y=50,width=200,height=90)
+    lab2= tk.Label(tk_nb2, text="Nombre de client",bg="#333",fg="#fff",font=("Arial",12))
+    lab2.place(x=30,y=10)
+    nb2 = tk.Label(tk_nb2,text="Nombre",bg="#333",fg="#FFF",font=("Arial",12))
+    nb2.place(x=60,y=40)
+    
+    
+    
+    
+    
+    
+    
 # frame client
 def client():
     frame_client = tk.Frame(root, bg="#1311eb", padx=10, pady=10)
@@ -102,15 +130,28 @@ def reservation():
     entry_montant_paye = tk.Entry(frame_reservation, width=30)
     entry_montant_paye.grid(row=7, column=1, padx=10, pady=5)
     
-     # Bouton pour soumettre la réservation
-    button_soumettre = tk.Button(frame_reservation, text="Soumettre", command=soumettre_reservation)
+    # Chargement et redimensionnement de l'image du bouton
+    image_btn = Image.open("icon/BTN.jpg")
+    image_btn = image_btn.resize((1200, 100), Image.ANTIALIAS)
+    image_btn = ImageTk.PhotoImage(image_btn)
+
+    # Création du bouton avec l'image et le texte
+    button_soumettre = tk.Button(frame_reservation, image=image_btn, text="Soumettre", compound="top", command=soumettre_reservation)
     button_soumettre.grid(row=8, columnspan=2, pady=20)
-    
-# frame chambre
+
+    # Pour éviter que l'image soit supprimée par le garbage collector
+    button_soumettre.image = image_btn
+    # frame chambre
 def chambre():
     frame_chambre = tk.Frame(root, bg="#2c5deb", padx=10, pady=10)
     frame_chambre.place(x=260, width=1100, height=780)
     
+    lab1 = tk.Label(frame_chambre,text="Chambre").pack(pady=5)
+    input =tk.Entry(frame_chambre).pack(pady=5)
+    lab2=tk.Label(frame_chambre, text="Service:", bg="#2c2beb", fg="white").pack(padx=10, pady=5)
+    service_var = tk.StringVar()
+    service_menu = tk.OptionMenu(frame_chambre, service_var, "Hôtel", "Restaurant", "Événement", "Massage")
+    service_menu.pack(padx=10, pady=5)
 # frame de payement
 def payement():
     frame_payement = tk.Frame(root, bg="lightpink", padx=10, pady=10)

@@ -1,7 +1,7 @@
 import tkinter as tk
-
+import ajouter
 def go_home():
-    print("Accueil")
+    ajouter.accueil(root)
 
 def go_about():
     print("À propos")
