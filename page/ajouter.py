@@ -120,10 +120,6 @@ def chambre():
         fenetre.title("Ajouter une Chambre")
         fenetre.geometry("400x300")
 
-        tk.Label(fenetre, text="Nom:").pack(pady=5)
-        entry_nom = tk.Entry(fenetre)
-        entry_nom.pack()
-
         tk.Label(fenetre, text="Type:").pack(pady=5)
         entry_type = tk.Entry(fenetre)
         entry_type.pack()
